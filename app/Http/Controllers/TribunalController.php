@@ -26,4 +26,15 @@ class TribunalController extends Controller
 
 
     }
+    public function show($id)
+    {
+        
+    }
+    public function destroy($id)
+    {
+        $tribunal = Tribunal::find($id);
+        $tribunal->delete();
+        return redirect()->back();
+       
+    }
 }

@@ -14,19 +14,20 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($dossiers as $dossier)
+                @forelse ($dossiers as $dossier)
                 <tr>
                     <td scope="row">{{$dossier->ref}}</td>
                     <td>{{$dossier->encours}}</td>
                     <td>{{$dossier->annee}}</td>
                 </tr>
-                    
-                @endforeach
+                @empty
                 <tr>
-                    <td scope="row"></td>
-                    <td></td>
-                    <td></td>
+                    <td colspan="3" style="text-align: center"><h2>لا شـــــــــــــــيء</h2></td>
+                    
                 </tr>
+                    
+                @endforelse
+                
             </tbody>
         </table>
 

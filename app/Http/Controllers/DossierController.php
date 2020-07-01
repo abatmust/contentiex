@@ -20,6 +20,9 @@ class DossierController extends Controller
     public function store(DossierStoreRequest $request){
         $dossier = new Dossier();
         $inputs = $request->except(['_token']);
+        $inputs['encours'] = $request->has('encours');
+        //dd($inputs);
+        // $article->title = $request->has('title')
         $createdDossier = $dossier->create($inputs);
         if($createdDossier){
             $dossiers = Dossier::all();
@@ -28,4 +31,6 @@ class DossierController extends Controller
 
 
     }
+   
+   
 }
