@@ -22,6 +22,6 @@ class Dossier extends Model
     }
     public function parties()
     {
-        return $this->belongsToMany(Partie::class);
+        return $this->belongsToMany(Partie::class)->withPivot('qualite');
     }
 }

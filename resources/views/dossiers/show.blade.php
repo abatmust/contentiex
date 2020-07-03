@@ -15,6 +15,13 @@
                             <span class="badge badge-warning">رائج</span>
                         </div>
                     @endif
+
+                    <p dir="rtl" class="text-right card-text"><span class="badge badge-info">الاطراف :</span><br>
+                    @foreach ($dossier->parties as $partie)
+                        
+                    <span>ال{{$partie->pivot->qualite}}: {{$partie->nomination}}</span><br>
+                    @endforeach
+                    </p>
                     <p dir="rtl" class="text-right card-text"><span class="badge badge-info">مرحلة التقاضي:</span> {{$dossier->niveau}}</p>
                     <p dir="rtl" class="text-right card-text"><span class="badge badge-info">نوع القضية:</span> {{$dossier->type}}</p>
                     <p dir="rtl" class="text-right card-text"><span class="badge badge-info">السنة:</span> {{$dossier->annee}}</p>
@@ -34,16 +41,21 @@
         <div class="card-group mt-2">
             <div class="card">
                 <h3>إضافة الاطراف</h3>
-                <div class="form-group">
-                  <label for=""></label>
-                  <select class="form-control" name="" id="">
-                    @foreach ($parties as $partie)
+                <form action="route('dossier_partie_attach', ['dossier' => $dossier->id, 'partie' => partie_id])" method="POST">
+                @csrf   
+                    <div class="form-group">
+                      <label for="partie_id">الطرف</label>
+                      <select class="form-control" name="partie_id" id="partie_id">
+                        @foreach ($parties as $partie)
+                            
+                      <option value="{{$partie->id}}">{{$partie->nomination}}</option>
+                        @endforeach
                         
-                  <option value="{{$partie->id}}">{{$partie->nomination}}</option>
-                    @endforeach
-                    
-                  </select>
-                </div>
+                      </select>
+                    </div>
+                    <input type="submit" value="إضافة">
+                </form>
+                
             </div>
         </div>
     </div>
