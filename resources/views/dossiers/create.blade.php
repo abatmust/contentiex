@@ -27,17 +27,39 @@
                     <label dir="rtl" class="form-check-label" for="encours">رائج</label>
                     <input type="checkbox" name="encours" id="encours" class="form-control form-check-input">
                 </div>
+                
                 <div dir="rtl" class="form-group col">
-                  <label class="float-right" for="niveau">مرحلة التقاضي</label>
-                  <input type="text" name="niveau" id="niveau" class="form-control" placeholder="مرحلة التقاضي" aria-describedby="helpId">
+                    <label class="float-right" for="niveau">مرحلة التقاضي</label>
+                    <select class="form-control" name="niveau" id="niveau">
+                      <option value="">إختار ...</option>
+                      <option value="إبتدائي">إبتدائي</option>
+                      <option value="إستئناف">إستئناف</option>
+                      <option value="نقض">نقض</option>
+                    </select>
                 </div>
     
             </div>
             <div dir="rtl" class="row">
                 <div dir="rtl" class="form-group col">
+                    <label class="float-right" for="type">نوع القضية</label>
+                    <select class="form-control" name="type" id="type">
+                      <option value="">إختار ...</option>
+                      <option value="إداري">إداري</option>
+                      <option value="مدني">مدني</option>
+                      <option value="تجاري">تجاري</option>
+                      <option value="إجتماعي">إجتماعي</option>
+                      <option value="جنحي">جنحي</option>
+                      <option value="سرقة المياه">سرقة المياه</option>
+                    </select>
+                </div>
+
+
+
+
+                {{-- <div dir="rtl" class="form-group col">
                 <label class="float-right" for="type">نوع القضية</label>
                 <input type="text" name="type" id="type" class="form-control" placeholder="نوع القضية" aria-describedby="helpId">
-                </div>
+                </div> --}}
                 <div dir="rtl" class="form-group col">
                     <label class="float-right" for="annee">السنة</label>
                     <input type="text" name="annee" id="annee" class="form-control" placeholder="السنة" aria-describedby="helpId">
@@ -45,7 +67,7 @@
                 <div dir="rtl" class="form-group col">
                 <label class="float-right" for="tribunal_id">المحكمة المختصة</label>
                 <select class="form-control" name="tribunal_id" id="tribunal_id">
-                        <option>إختار</option>
+                        <option value="">إختار ...</option>
                     @foreach ($tribunals as $tribunal)
                         <option value="{{$tribunal->id}}" >{{$tribunal->nomination}}</option>
                         

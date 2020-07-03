@@ -16,6 +16,9 @@ class TribunalController extends Controller
         return view("tribunals.create");
     }
     public function store(TribunalStoreRequest $request){
+        $validatedData = $request->validate([
+            'nomination' => 'required|unique:tribunals|min:6',
+        ]);
         $tribunal = new Tribunal();
         $inputs = $request->except(['_token']);
         $createdTribunal = $tribunal->create($inputs);
@@ -30,11 +33,29 @@ class TribunalController extends Controller
     {
         
     }
+    public function edit(Request $request, $id)
+    {
+        $tribunal = Tribunal::findOrFail($id);
+
+        return view("tribunals.edit", ['monTribunal' => $tribunal]);
+    }
     public function destroy($id)
     {
         $tribunal = Tribunal::find($id);
         $tribunal->delete();
         return redirect()->back();
        
+    }
+    public function update(Request $request, $id){
+       
+        $tribunal = Tribunal::findOrFail($id);
+        $inputs = $request->except(['_token']);
+               
+            $tribunal->update($inputs);
+      
+        $tribunals = Tribunal::all();
+        return view("tribunals.index", ['tribunals' => $tribunals]);
+
+
     }
 }

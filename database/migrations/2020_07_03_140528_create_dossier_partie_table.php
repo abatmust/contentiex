@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePartiesTable extends Migration
+class CreateDossierPartieTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreatePartiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('parties', function (Blueprint $table) {
+        Schema::create('dossier_partie', function (Blueprint $table) {
             $table->id();
-            $table->string('nomination');
-
+            $table->foreignId('dossier_id');
+            $table->foreignId('partie_id');
+            $table->string('qualite')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreatePartiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('parties');
+        Schema::dropIfExists('dossier_partie');
     }
 }

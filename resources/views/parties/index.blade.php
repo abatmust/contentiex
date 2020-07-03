@@ -2,25 +2,25 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
-        <a class="btn btn-secondary" href="{{route('tribunals.create')}}">إضافة محكمة </a>
-        <h2 dir="rtl" class="text-center">لائحة المحاكم</h2>
+        <a class="btn btn-secondary" href="{{route('parties.create')}}">إضافة جديدة </a>
+        <h2 dir="rtl" class="text-center">لائحة الاطراف</h2>
 
         <table dir="rtl" class="table">
             <thead>
                 <tr>
                     <th style="text-align: center">الرقم</th>
-                    <th style="text-align: center">المحكمة</th>
+                    <th style="text-align: center">التسمية</th>
                     <th style="text-align: center">---</th>
                     <th style="text-align: center">...</th>
                 </tr>
             </thead>
             <tbody>
-                @forelse ($tribunals as $tribunal)
+                @forelse ($parties as $partie)
                 <tr>
-                    <td scope="row" style="text-align: center">{{$tribunal->id}}</td>
-                    <td style="text-align: center">{{$tribunal->nomination}}</td>
+                    <td scope="row" style="text-align: center">{{$partie->id}}</td>
+                    <td style="text-align: center">{{$partie->nomination}}</td>
                     <td style="text-align: center">
-                        <form action="{{route('tribunals.destroy', ['tribunal' => $tribunal->id])}}" method="POST">
+                        <form action="{{route('parties.destroy', ['party' => $partie->id])}}" method="POST">
                             @csrf
                             @method('DELETE')
                             <input class="delete_btn btn btn-danger" type="submit" value="حذف">
@@ -28,14 +28,14 @@
                     </td>
                     <td style="text-align: center">
                         
-                            <a href="{{route('tribunals.edit', ['tribunal' => $tribunal->id])}}" class="btn btn-success" >تعديل</a>
+                            <a href="{{route('parties.edit', ['party' => $partie->id])}}" class="btn btn-success" >تعديل</a>
                        
                     </td>
                 </tr>
                 @empty
                     
                 <tr>
-                    <td colspan="2" style="text-align: center"><h2>لا شـــــــــيء</h2></td>
+                    <td colspan="4" style="text-align: center"><h2>لا شـــــــــيء</h2></td>
                 </tr>
 
                 
@@ -56,7 +56,6 @@
 <script>
     $(document).ready(function(){
 
-        
         $('.delete_btn').on('click', function(event){
             event.preventDefault();
             swal.fire({

@@ -11,8 +11,8 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/sweetalert.min.js"></script>
+    <script src="{{ asset('js/jquery.min.js')}}"></script>
+    <script src="{{ asset('js/sweetalert.min.js')}}"></script>
     {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script> --}}
 
     <!-- Fonts -->
@@ -64,6 +64,7 @@
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
+                                    <a class="dropdown-item" href="{{ route('home') }}">الصفحة الرئيسية</a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf

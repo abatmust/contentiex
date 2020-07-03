@@ -22,3 +22,4 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('dossiers', 'DossierController');
 Route::resource('tribunals', 'TribunalController');
+Route::resource('parties', 'PartieController');

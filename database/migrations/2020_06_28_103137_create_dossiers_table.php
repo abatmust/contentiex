@@ -22,7 +22,10 @@ class CreateDossiersTable extends Migration
             $table->enum('annee',['2010','2011','2012','2013','2014','2015','2016','2017','2018','2019','2020'])->nullable();
             $table->foreignId('tribunal_id')->nullable();
             $table->text('observation')->nullable();
-            $table->foreignId('dossier_id')->nullable();
+            // $table->foreignId('dossier_id')->nullable();
+            //$table->foreignId('dossier_id')->nullable();
+            $table->integer('dossier_id')->nullable()->unsigned();
+            //$table->foreign('dossier_id')->references('id')->on('dossiers')->nullable();
             $table->timestamps();
         });
     }

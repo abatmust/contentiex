@@ -10,15 +10,33 @@
                 <tr>
                     <th style="text-align: center">المرجع</th>
                     <th>رائج</th>
+                    <th> السنة</th>
+                    <th> المحكمة المختصة</th>
+                    <th> نوع الملف</th>
                     <th>مرحلة التقاضي</th>
+                    <th>ملف سابق</th>
+                    <th>ملاحظات</th>
+                    <th>...</th>
+                    <th>...</th>
                 </tr>
             </thead>
             <tbody>
                 @forelse ($dossiers as $dossier)
                 <tr>
                     <td scope="row">{{$dossier->ref}}</td>
-                    <td>{{$dossier->encours}}</td>
+                    <td>
+                        @if($dossier->encours) 
+                            <span class='badge badge-warning'>رائج</span>
+                        @endif
+                    </td>
                     <td>{{$dossier->annee}}</td>
+                    <td>{{$dossier->tribunal->nomination ?? '---'}}</td>
+                    <td>{{$dossier->type}}</td>
+                    <td>{{$dossier->niveau}}</td>
+                    <td>{{$dossier->dossier_id}}</td>
+                    <td>{{$dossier->observation}}</td>
+                    <td><a href="{{route('dossiers.edit', ['dossier' => $dossier->id])}}" class="btn btn-primary">تعديل</a></td>
+                    <td><a href="{{route('dossiers.show', ['dossier' => $dossier->id])}}" class="btn btn-secondary">تفاصيل</a></td>
                 </tr>
                 @empty
                 <tr>

@@ -27,7 +27,7 @@ class DossierStoreRequest extends FormRequest
             'ref' => 'nullable|string',
             'encours' => 'nullable',
             'niveau' => 'nullable|string',
-            'type' => 'nullable|integer',
+            'type' => 'nullable|string',
             'annee' => 'nullable|string|min:4|max:4',
             'tribunal_id' => 'nullable|integer',
             'observation' => 'nullable',
