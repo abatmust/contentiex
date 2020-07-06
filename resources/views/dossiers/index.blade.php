@@ -33,7 +33,7 @@
                     <td>{{$dossier->tribunal->nomination ?? '---'}}</td>
                     <td>{{$dossier->type}}</td>
                     <td>{{$dossier->niveau}}</td>
-                    <td>{{$dossier->dossier_id}}</td>
+                    <td> </span>{{$dossier->previous->ref ?? '...'}} /{{$dossier->previous->annee ?? '...'}} / {{$dossier->previous->niveau ?? '...'}}</td>
                     <td>{{$dossier->observation}}</td>
                     <td><a href="{{route('dossiers.edit', ['dossier' => $dossier->id])}}" class="btn btn-primary">تعديل</a></td>
                     <td><a href="{{route('dossiers.show', ['dossier' => $dossier->id])}}" class="btn btn-secondary">تفاصيل</a></td>

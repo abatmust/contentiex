@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class TribunalController extends Controller
 {
+    public function __construct()
+    {
+      $this->middleware('auth');
+    }
     public function index(){
         $tribunals = Tribunal::all();
         return view("tribunals.index", ['tribunals' => $tribunals]);
@@ -47,6 +51,9 @@ class TribunalController extends Controller
        
     }
     public function update(Request $request, $id){
+        $validatedData = $request->validate([
+            'nomination' => 'required|unique:tribunals|min:6',
+        ]);
        
         $tribunal = Tribunal::findOrFail($id);
         $inputs = $request->except(['_token']);

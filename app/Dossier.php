@@ -15,5 +15,9 @@ public function tribunal()
 {
     return $this->belongsTo(Tribunal::class);
 }
+public function previous()
+{
+    return $this->belongsTo(Dossier::class, 'dossier_id', 'id');
+}
 
 }

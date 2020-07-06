@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class PartieController extends Controller
 {
+    public function __construct()
+    {
+      $this->middleware('auth');
+    }
     public function index(){
         $parties = Partie::all();
         return view('parties.index', ['parties' => $parties]);

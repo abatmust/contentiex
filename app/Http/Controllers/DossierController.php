@@ -10,6 +10,10 @@ use App\Tribunal;
 
 class DossierController extends Controller
 {
+    public function __construct()
+    {
+      $this->middleware('auth');
+    }
     public function index(){
         $dossiers = Dossier::all();
         return view("dossiers.index", ['dossiers' => $dossiers]);
@@ -22,7 +26,7 @@ class DossierController extends Controller
     }
     public function create(){
 
-        return view("dossiers.create", ['tribunals' => Tribunal::all()]);
+        return view("dossiers.create", ['tribunals' => Tribunal::all(), 'dossiers' => Dossier::all()]);
     }
     public function store(DossierStoreRequest $request){
         $dossier = new Dossier();
@@ -44,7 +48,7 @@ class DossierController extends Controller
       
 
 
-        return view('dossiers.edit', ['tribunals' => Tribunal::all(), 'monDossier' => $dossier]);
+        return view('dossiers.edit', ['tribunals' => Tribunal::all(), 'monDossier' => $dossier, 'dossiers' => Dossier::all()]);
     }
     public function update(Request $request, $id){
        

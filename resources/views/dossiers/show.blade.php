@@ -3,7 +3,6 @@
     <div class="container">
       
         <h2 dir="rtl" class="text-center">تفاصيل الملف</h2>
-        {{$dossier}}
 
         <div class="card-group">
             <div class="card">
@@ -15,14 +14,21 @@
                             <span class="badge badge-warning">رائج</span>
                         </div>
                     @endif
-
-                    <p dir="rtl" class="text-right card-text"><span class="badge badge-info">الاطراف :</span><br>
-                    @if ($dossier->parties)
-                        @foreach ($dossier->parties as $partie)
-                            <span>ال{{$partie->pivot->qualite}}: {{$partie->nomination}}</span><br>
-                        @endforeach
-                    @endif
-                    </p>
+                    <div dir="rtl" class="row">
+                        <div dir="rtl" class="col-10">
+                            <p dir="rtl" class="text-right card-text"><span class="badge badge-info">الاطراف :</span><br>
+                                @if ($dossier->parties)
+                                    @foreach ($dossier->parties as $partie)
+                                        <span>ال{{$partie->pivot->qualite}}: {{$partie->nomination}}</span><br>
+                                    @endforeach
+                                @endif
+                                </p>
+                        </div>
+                        <div dir="rtl" class="col-2">
+                        <a class="btn btn-sm btn-primary" href="{{'../addPartieToDossier/' . $dossier->id}}">معالجة الاطراف</a>
+                        </div>
+                    </div>
+                        
                     <p dir="rtl" class="text-right card-text"><span class="badge badge-info">مرحلة التقاضي:</span> {{$dossier->niveau}}</p>
                     <p dir="rtl" class="text-right card-text"><span class="badge badge-info">نوع القضية:</span> {{$dossier->type}}</p>
                     <p dir="rtl" class="text-right card-text"><span class="badge badge-info">السنة:</span> {{$dossier->annee}}</p>
@@ -30,7 +36,6 @@
                     <p dir="rtl" class="text-right card-text"><span class="badge badge-info">الملف السابق:
                         @if ($dossier->previous)
                             </span>المرجع: {{$dossier->previous->ref ?? '...'}} السنة: {{$dossier->previous->annee ?? '...'}} درجة التقاضي: {{$dossier->previous->niveau ?? '...'}}
-                            
                         @endif
 
                     </p>
@@ -39,25 +44,6 @@
             </div>
            
         </div>
-        <div class="card-group mt-2">
-            <div class="card">
-                <h3>إضافة الاطراف</h3>
-                <form action="route('dossier_partie_attach', ['dossier' => $dossier->id, 'partie' => partie_id])" method="POST">
-                @csrf   
-                    <div class="form-group">
-                      <label for="partie_id">الطرف</label>
-                      <select class="form-control" name="partie_id" id="partie_id">
-                        @foreach ($parties as $partie)
-                            
-                      <option value="{{$partie->id}}">{{$partie->nomination}}</option>
-                        @endforeach
-                        
-                      </select>
-                    </div>
-                    <input type="submit" value="إضافة">
-                </form>
-                
-            </div>
-        </div>
+        
     </div>
 @endsection

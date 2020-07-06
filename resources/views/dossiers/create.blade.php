@@ -88,7 +88,16 @@
                 </div>
                 <div dir="rtl" class="form-group col-4">
                   <label class="float-right" for="dossier_id">ملف سابق</label>
-                  <input type="text" name="dossier_id" id="dossier_id" class="form-control" placeholder="ملف سابق" aria-describedby="helpId">
+                  {{-- <input type="text" name="dossier_id" id="dossier_id" class="form-control" placeholder="ملف سابق" aria-describedby="helpId"> --}}
+                  <select dir="rtl" class="form-control" name="dossier_id" id="dossier_id">
+                    <option value="">إختار ....</option>
+                    @foreach($dossiers as $dossier)
+                        <option value="{{$dossier->id}}"
+                         
+                          >{{$dossier->ref}}: {{$dossier->type}} : {{$dossier->annee}}</option>
+                    @endforeach
+        
+                  </select>
                 </div>
             </div>
             <input style="width:31%" type="submit" class="btn btn-success" value="إضافة"/>

@@ -4,7 +4,7 @@
 
         <h2 dir="rtl" style="text-align: right">إضافة طرف الى الملف</h2>
 
-        <p>الملف رقم: {{$dossier->ref}}</p>
+        <h3 style="text-align: center">الملف رقم: {{$dossier->ref}}</h3>
         <div dir="rtl" class="row">
             <div class="card text-left col">
       

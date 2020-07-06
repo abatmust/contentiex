@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard</div>
+                <div dir="rtl" class="card-header text-right">لوحة الاستقبال</div>
 
                 <div class="card-body text-center" dir="rtl">
                     @if (session('status'))
