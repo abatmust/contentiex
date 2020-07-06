@@ -17,10 +17,11 @@
                     @endif
 
                     <p dir="rtl" class="text-right card-text"><span class="badge badge-info">الاطراف :</span><br>
-                    @foreach ($dossier->parties as $partie)
-                        
-                    <span>ال{{$partie->pivot->qualite}}: {{$partie->nomination}}</span><br>
-                    @endforeach
+                    @if ($dossier->parties)
+                        @foreach ($dossier->parties as $partie)
+                            <span>ال{{$partie->pivot->qualite}}: {{$partie->nomination}}</span><br>
+                        @endforeach
+                    @endif
                     </p>
                     <p dir="rtl" class="text-right card-text"><span class="badge badge-info">مرحلة التقاضي:</span> {{$dossier->niveau}}</p>
                     <p dir="rtl" class="text-right card-text"><span class="badge badge-info">نوع القضية:</span> {{$dossier->type}}</p>

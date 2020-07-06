@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Dossier;
+use App\Partie;
 use Illuminate\Http\Request;
 
 class DossierPartieController extends Controller
@@ -21,9 +23,10 @@ class DossierPartieController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($dossier, $partie)
+    public function create(Dossier $dossier)
     {
-        return view('dossiers.partie.create');
+        $parties = Partie::all();
+        return view('dossiers.partie.create', ['parties'=> $parties , 'dossier' => $dossier]);
     }
 
     /**
@@ -32,9 +35,11 @@ class DossierPartieController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $dossier)
+    public function store(Request $request)
     {
-       dd($dossier);
+        $dossier = Dossier::findOrFail($request->input('dossier_id'));
+        $dossier->parties()->attach($request->input('partie_id'), ['qualite' => $request->input('qualite')]);
+        return redirect()->back();
     }
 
     /**
@@ -80,5 +85,11 @@ class DossierPartieController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function detachPartieFromDossier($dossier_id, $partie_id)
+    {
+        $dossier = Dossier::findOrFail($dossier_id);
+        $dossier->parties()->detach($partie_id);
+        return redirect()->back();
     }
 }

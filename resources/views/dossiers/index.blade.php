@@ -40,7 +40,7 @@
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="3" style="text-align: center"><h2>لا شـــــــــــــــيء</h2></td>
+                    <td colspan="10"><h2 style="text-align: center">لا شـــــــــــــــيء</h2></td>
                     
                 </tr>
                     

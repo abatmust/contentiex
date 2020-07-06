@@ -24,3 +24,12 @@ Route::resource('dossiers', 'DossierController');
 Route::resource('tribunals', 'TribunalController');
 Route::resource('parties', 'PartieController');
 Route::post('dossiers/parties/{partie}', 'DossierPartieController@create')->name('dossier_partie_attach');
+
+Route::post('addPartieToDossier', 'DossierPartieController@store')->name('addPartieToDossier');
+Route::get('addPartieToDossier/{dossier}', 'DossierPartieController@create');
+Route::delete('detachPartieFromDossier/{dossier_id}/{partie_id}', 'DossierPartieController@detachPartieFromDossier')->name('detachPartieFromDossier');
+
+
+
+
+

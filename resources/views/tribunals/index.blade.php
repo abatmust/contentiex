@@ -35,7 +35,7 @@
                 @empty
                     
                 <tr>
-                    <td colspan="2" style="text-align: center"><h2>لا شـــــــــيء</h2></td>
+                    <td colspan="4"><h2 style="text-align: center">لا شـــــــــيء</h2></td>
                 </tr>
 
                 
