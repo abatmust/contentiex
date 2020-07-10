@@ -19,5 +19,13 @@ public function previous()
 {
     return $this->belongsTo(Dossier::class, 'dossier_id', 'id');
 }
+    public function actes()
+    {
+        return $this->hasMany(Acte::class);
+    }
+    public function jugements()
+    {
+        return $this->hasMany(Jugement::class);
+    }
 
 }

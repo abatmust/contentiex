@@ -21,20 +21,21 @@
             <div dir="rtl" class="row">
                 <div dir="rtl" class="form-group col">
                   <label class="float-right" for="ref">المرجع</label>
-                  <input type="text" name="ref" id="ref" class="form-control" placeholder="المرجع" aria-describedby="helpId">
+                <input type="text" name="ref" id="ref" class="form-control" placeholder="المرجع" value="{{old('ref' ?? '')}}">
                 </div>
                 <div dir="rtl" class="col form-check text-right">
                     <label dir="rtl" class="form-check-label" for="encours">رائج</label>
-                    <input type="checkbox" name="encours" id="encours" class="form-control form-check-input">
+                    <input type="checkbox" name="encours" id="encours" class="form-control form-check-input" {{old('ref') ? 'checked' : ''}}>
                 </div>
                 
                 <div dir="rtl" class="form-group col">
                     <label class="float-right" for="niveau">مرحلة التقاضي</label>
                     <select class="form-control" name="niveau" id="niveau">
-                      <option value="">إختار ...</option>
-                      <option value="إبتدائي">إبتدائي</option>
-                      <option value="إستئناف">إستئناف</option>
-                      <option value="نقض">نقض</option>
+                      <option  value="">إختار ...</option>
+                      <option {{old('niveau') == 'إبتدائي' ? 'selected' : ''}}>إبتدائي</option>
+                      <option {{old('niveau') == 'إستئناف' ? 'selected' : ''}}>إستئناف</option>
+                      <option {{old('niveau') == 'نقض' ? 'selected' : ''}}>نقض</option>
+                      
                     </select>
                 </div>
     
@@ -44,12 +45,12 @@
                     <label class="float-right" for="type">نوع القضية</label>
                     <select class="form-control" name="type" id="type">
                       <option value="">إختار ...</option>
-                      <option value="إداري">إداري</option>
-                      <option value="مدني">مدني</option>
-                      <option value="تجاري">تجاري</option>
-                      <option value="إجتماعي">إجتماعي</option>
-                      <option value="جنحي">جنحي</option>
-                      <option value="سرقة المياه">سرقة المياه</option>
+                      <option {{old('type') == 'إداري' ? 'selected' : ''}}>إداري</option>
+                      <option {{old('type') == 'مدني' ? 'selected' : ''}}>مدني</option>
+                      <option {{old('type') == 'تجاري' ? 'selected' : ''}}>تجاري</option>
+                      <option {{old('type') == 'إجتماعي' ? 'selected' : ''}}>إجتماعي</option>
+                      <option {{old('type') == 'جنحي' ? 'selected' : ''}}>جنحي</option>
+                      <option {{old('type') == 'سرقة المياه' ? 'selected' : ''}}>سرقة المياه</option>
                     </select>
                 </div>
 
@@ -69,7 +70,7 @@
                 <select class="form-control" name="tribunal_id" id="tribunal_id">
                         <option value="">إختار ...</option>
                     @foreach ($tribunals as $tribunal)
-                        <option value="{{$tribunal->id}}" >{{$tribunal->nomination}}</option>
+                        <option {{old('tribunal_id') == $tribunal->id ? 'selected' : ''}} value="{{$tribunal->id}}" >{{$tribunal->nomination}}</option>
                         
                     @endforeach
                     
@@ -84,7 +85,7 @@
     
                 <div dir="rtl" class="form-group col-8">
                   <label class="float-right" for="observation">ملاحظة</label>
-                  <textarea name="observation" id="observation" rows="3" class="form-control"></textarea>
+                  <textarea name="observation" id="observation" rows="3" class="form-control">{{old('observation' ?? '')}}</textarea>
                 </div>
                 <div dir="rtl" class="form-group col-4">
                   <label class="float-right" for="dossier_id">ملف سابق</label>
@@ -92,7 +93,7 @@
                   <select dir="rtl" class="form-control" name="dossier_id" id="dossier_id">
                     <option value="">إختار ....</option>
                     @foreach($dossiers as $dossier)
-                        <option value="{{$dossier->id}}"
+                        <option {{old('dossier_id') == $dossier->id ? 'selected' : ''}} value="{{$dossier->id}}"
                          
                           >{{$dossier->ref}}: {{$dossier->type}} : {{$dossier->annee}}</option>
                     @endforeach

@@ -29,6 +29,17 @@ class DossierController extends Controller
         return view("dossiers.create", ['tribunals' => Tribunal::all(), 'dossiers' => Dossier::all()]);
     }
     public function store(DossierStoreRequest $request){
+       
+        $validatedData = $request->validate([
+            'ref' => 'nullable',
+            'encours' => 'nullable|in:on',
+            'niveau' => 'nullable',
+            'type' => 'nullable|string',
+            'annee' => 'nullable|between:2010,2022',
+            'tribunal' => 'numeric|nullable',
+            'observation' => 'nullable|text',
+           
+        ]);
         $dossier = new Dossier();
         $inputs = $request->except(['_token']);
         $inputs['encours'] = $request->has('encours');

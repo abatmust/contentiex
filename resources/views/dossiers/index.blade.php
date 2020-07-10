@@ -18,6 +18,7 @@
                     <th>ملاحظات</th>
                     <th>...</th>
                     <th>...</th>
+                    <th>...</th>
                 </tr>
             </thead>
             <tbody>
@@ -37,6 +38,15 @@
                     <td>{{$dossier->observation}}</td>
                     <td><a href="{{route('dossiers.edit', ['dossier' => $dossier->id])}}" class="btn btn-primary">تعديل</a></td>
                     <td><a href="{{route('dossiers.show', ['dossier' => $dossier->id])}}" class="btn btn-secondary">تفاصيل</a></td>
+                    <td>
+                        
+                        <a href="{{route('dossiers.jugement.create', ['dossier' => $dossier->id])}}" class="btn btn-secondary mb-1">إضافة حكم</a>
+                        
+                        @if (!$dossier->jugements->isEmpty())
+                            <a href="{{route('dossiers.jugement.index', ['dossier' => $dossier->id])}}" class="btn btn-primary">لائحة الاحكام</a>
+                        @endif
+                        
+                    </td>
                 </tr>
                 @empty
                 <tr>

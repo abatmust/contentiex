@@ -44,6 +44,89 @@
             </div>
            
         </div>
+        <div class="card-group">
+            <div class="card">
+                <h4 dir="rtl" class="text-center card-title"><span class="badge badge-pill badge-primary">الاجراءات</span></h4>
+                <div class="card-body">
+                    <a class="btn btn-sm btn-primary mb-2" href="{{route('dossiers.acte.create', ['dossier' => $dossier->id])}}">إجراء جديد</a>
+                    <table dir="rtl" class="table">
+                        <thead>
+                            <tr>
+                                <th style="text-align: center">نوع</th>
+                                <th style="text-align: center">التاريخ</th>
+                                <th style="text-align: center">الآجل</th>
+                                <th style="text-align: center">المضمون</th>
+                                <th>...</th>
+                                <th>...</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse ($dossier->actes as $acte)
+                            <tr>
+                                <td style="text-align: center">{{$acte->type}}</td>
+                                <td style="text-align: center">{{$acte->date}}</td>
+                                <td style="text-align: center">{{$acte->delai}}</td>
+                                <td style="text-align: center">{{$acte->contenu}}</td>
+                                <td>
+                                <form action="{{route('actes.destroy', ['acte' => $acte->id])}}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                        <input class="btn btn-sm btn-danger delete_btn" type="submit" value="حذف">
+                                    </form>
+                                </td>
+                            <td><a class="btn btn-sm btn-secondary" href="{{route('actes.edit', ['acte' => $acte->id])}}">تعديل</a></td>
+                               
+                            </tr>
+                                
+                            @empty
+                            <tr>
+                                <td style="text-align: center" colspan="4">لا شـــــــيئ</td>
+                              
+                            </tr>
+                                
+                            @endforelse
+                            
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
         
     </div>
 @endsection
+@push('scripts')
+<script>
+    $(document).ready(function(){
+
+        $('.delete_btn').on('click', function(event){
+            event.preventDefault();
+            swal.fire({
+            title: 'هل أنت متأكد ؟',
+            text: "! لن يكون بإمكانك التراجع ",
+            icon: 'question',
+            iconHtml: '؟',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'نعم',
+            cancelButtonText: 'لا',
+            showCancelButton: true,
+            showCloseButton: true
+      
+
+            }).then((result) => {
+            if (result.value) {
+            event.target.form.submit();
+                Swal.fire(
+                'حذف !',
+                'تم الحذف.',
+                'success'
+                )
+            }
+            })
+        });
+       
+    });
+</script>
+@endpush

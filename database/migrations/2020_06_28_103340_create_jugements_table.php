@@ -15,6 +15,16 @@ class CreateJugementsTable extends Migration
     {
         Schema::create('jugements', function (Blueprint $table) {
             $table->id();
+            $table->string('num')->nullable();
+            $table->date('date')->nullable();
+            $table->text('contenu')->nullable();
+            $table->boolean('favorable')->nullable();
+            $table->decimal("montant",11,2,true)->nullable();
+            $table->foreignId('dossier_id')
+                    ->constrained()
+                    ->onDelete('cascade')
+                    ->unique();
+            $table->string("image")->nullable()->unique();
             $table->timestamps();
         });
     }

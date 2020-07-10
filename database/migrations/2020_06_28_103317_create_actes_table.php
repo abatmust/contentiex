@@ -15,6 +15,11 @@ class CreateActesTable extends Migration
     {
         Schema::create('actes', function (Blueprint $table) {
             $table->id();
+            $table->string('type')->nullable();
+            $table->date('date')->nullable();
+            $table->string('delai')->nullable();
+            $table->text('contenu')->nullable();
+            $table->foreignId('dossier_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
