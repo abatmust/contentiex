@@ -15,7 +15,7 @@
             @endforeach
 
         @endif
-    <form action="{{route('dossiers.jugement.add', ['dossier'=> $dossier])}}" method="POST">
+    <form action="{{route('dossiers.jugement.add', ['dossier'=> $dossier])}}" method="POST" enctype="multipart/form-data">
             @csrf
             <div dir="rtl" class="row">
                 

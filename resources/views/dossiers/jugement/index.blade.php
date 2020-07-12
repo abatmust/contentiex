@@ -15,15 +15,27 @@
 @foreach ($dossier->jugements as $jugement)
     <div class="card text-right mb-2">
         <div class="card-body">
-        <h4 dir="rtl" class="card-title text-right">الحكم عدد :{{$jugement->num }} بتاريخ: {{$jugement->date}}</h4>
-        <p dir="rtl" class="card-text text-right">{{$jugement->contenu}}</p>
+        <h4 dir="rtl" class="card-title text-right">الحكم عدد :{{$jugement->num }} بتاريخ: {{date('Y/m/d',strtotime($jugement->date))}}</h4>
+        <div dir="rtl" class="row">
+            <div class="col">
+                <p dir="rtl" class="card-text text-right">{{$jugement->contenu}}</p>
+            </div>
+            <div class="col">
+                <p dir="rtl" class="card-text text-right">{{$jugement->favorable ? 'لصالح مكتب الحوز': 'ضد مكتب الحوز'}}</p>
+            </div>
+            <div class="col">
+                @if($jugement->image)
+                    <a class="badge badge-success" href="{{Storage::url($jugement->image)}}">نسخة من الحكم</a>
+                @endif
+            </div>
+        </div>
 
-            <button class="btn btn-info btn-sm update-btn mb-3">إستمارة التعديل</button>
+            <button class="btn btn-info btn-sm update-btn my-3">إستمارة التعديل</button>
             @if($errors->any())
             
 
         @endif
-        <form action="{{route('jugement.update', ['jugement' => $jugement->id])}}" method="POST" class="myform rounded p-3 d-none" style="border: 2px solid black">
+        <form action="{{route('jugement.update', ['jugement' => $jugement->id])}}" method="POST" class="myform rounded p-3 d-none" style="border: 2px solid black" enctype="multipart/form-data">
             @csrf
             @method('PUT')    
             <div dir ="rtl" class="row">
@@ -45,9 +57,10 @@
 
                                 في مصلحة م.ح
                             </div>
-                        <input type="checkbox" class="form-control form-check-input" name="favorable" id="favorable {{$jugement->favorable ? 'checked' : ''}}">
+                        <input type="checkbox" class="form-control form-check-input" name="favorable" id="favorable" {{$jugement->favorable == 1 ? 'checked': ''}}>
                         
                     </label>
+                   
                     </div>
 
                 </div>
@@ -56,7 +69,10 @@
                       <label for="contenu">المضمون</label>
                       <textarea name="contenu" id="contenu" class="form-control" placeholder="المضمون" rows="2">{{$jugement->contenu}}</textarea>
                     </div>
-                    <div class="col-4">
+                    <div class="form-group col-2">
+                        <input type="file" class="form-control-file" name="myFile">
+                    </div>
+                    <div class="col-2">
                         <br>
                         <br>
                         <input class="btn btn-lg btn-block btn-primary" style="width: 50%" type="submit" value="تأكيد">

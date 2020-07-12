@@ -24,6 +24,7 @@ Route::resource('dossiers', 'DossierController');
 Route::resource('actes', 'ActeController')->only('destroy');
 Route::resource('tribunals', 'TribunalController');
 Route::resource('parties', 'PartieController');
+Route::resource('jugements', 'JugementController');
 Route::post('dossiers/parties/{partie}', 'DossierPartieController@create')->name('dossier_partie_attach');
 
 Route::post('addPartieToDossier', 'DossierPartieController@store')->name('addPartieToDossier');

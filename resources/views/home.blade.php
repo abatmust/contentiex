@@ -19,6 +19,7 @@
                     <a class="btn btn-primary btn-lg" href="{{route('dossiers.index')}}">الملفات</a>
                     <a class="btn btn-primary btn-lg" href="{{route('tribunals.index')}}">المحاكم</a>
                     <a class="btn btn-primary btn-lg" href="{{route('parties.index')}}">الاطراف</a>
+                    <a class="btn btn-primary btn-lg" href="{{route('jugements.index')}}">الاحكام</a>
                     
                     
                 </div>
