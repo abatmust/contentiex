@@ -29,7 +29,7 @@ class DossierPartieController extends Controller
      */
     public function create(Dossier $dossier)
     {
-        $parties = Partie::all();
+        $parties = Partie::orderBy('nomination')->get();
         return view('dossiers.partie.create', ['parties'=> $parties , 'dossier' => $dossier]);
     }
 

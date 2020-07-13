@@ -4,8 +4,10 @@
     <div class="container">
         <a class="btn btn-secondary" href="{{route('parties.create')}}">إضافة جديدة </a>
         <h2 dir="rtl" class="text-center">لائحة الاطراف</h2>
+        <input dir="rtl" id="myInput" type="text" placeholder="بحث ..." class="float-right form-control my-3" style="width:20%">
+        
 
-        <table dir="rtl" class="table">
+        <table dir="rtl" class="table" id="myTable">
             <thead>
                 <tr>
                     <th style="text-align: center">الرقم</th>
@@ -83,6 +85,12 @@
             }
             })
         });
+        $("#myInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+  });
        
     });
 </script>

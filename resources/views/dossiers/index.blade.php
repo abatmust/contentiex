@@ -2,23 +2,45 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
-        <a class="btn btn-secondary" href="{{route('dossiers.create')}}"">ملف جديد</a>
+        <a class="btn btn-secondary" href="{{route('dossiers.create')}}">ملف جديد</a>
         <h2 dir="rtl" class="text-center">لائحة الملفات</h2>
-
-        <table dir="rtl" class="table">
+        <input dir="rtl" id="myInput" type="text" placeholder="بحث ..." class="float-right form-control my-3" style="width:20%">
+        <table id="myTable" dir="rtl" class="table">
             <thead>
                 <tr>
                     <th style="text-align: center">المرجع</th>
-                    <th>رائج</th>
-                    <th> السنة</th>
-                    <th> المحكمة المختصة</th>
-                    <th> نوع الملف</th>
-                    <th>مرحلة التقاضي</th>
-                    <th>ملف سابق</th>
-                    <th>ملاحظات</th>
-                    <th>...</th>
-                    <th>...</th>
-                    <th>...</th>
+                    <th style="text-align: center">رائج</th>
+                    <th style="text-align: center"> السنة</th>
+                    <th style="text-align: center"> المحكمة المختصة</th>
+                    <th style="text-align: center">
+                         نوع الملف
+                         <br>
+                         <select id="typeSelected" class="form-control my-2" name="niveau" id="type">
+                                <option  value=""> ...</option>
+                                <option>إداري</option>
+                                <option>مدني</option>
+                                <option>تجاري</option>
+                                <option>إجتماعي</option>
+                                <option>جنحي</option>
+                                <option>سرقة المياه</option>
+                             
+                         </select>
+                    </th>
+                    <th style="text-align: center">
+                        مرحلة التقاضي <br>
+                        <select id="niveauSelected" class="form-control my-2" name="niveau" id="niveau">
+                            <option  value=""> ...</option>
+                            <option>إبتدائي</option>
+                            <option>إستئناف</option>
+                            <option>نقض</option>
+                            
+                        </select>
+                    </th>
+                    <th style="text-align: center">ملف سابق</th>
+                    <th style="text-align: center">ملاحظات</th>
+                    <th style="text-align: center">...</th>
+                    <th style="text-align: center">...</th>
+                    <th style="text-align: center">...</th>
                 </tr>
             </thead>
             <tbody>
@@ -32,8 +54,8 @@
                     </td>
                     <td>{{$dossier->annee}}</td>
                     <td>{{$dossier->tribunal->nomination ?? '---'}}</td>
-                    <td>{{$dossier->type}}</td>
-                    <td>{{$dossier->niveau}}</td>
+                    <td class="col4">{{$dossier->type}}</td>
+                    <td class="col5">{{$dossier->niveau}}</td>
                     <td> </span>{{$dossier->previous->ref ?? '...'}} /{{$dossier->previous->annee ?? '...'}} / {{$dossier->previous->niveau ?? '...'}}</td>
                     <td>{{$dossier->observation}}</td>
                     <td><a href="{{route('dossiers.edit', ['dossier' => $dossier->id])}}" class="btn btn-primary">تعديل</a></td>
@@ -61,3 +83,31 @@
 
     </div>
 @endsection
+@push('scripts')
+<script>
+    $(document).ready(function(){
+
+        
+        $("#myInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+         });
+        $("#niveauSelected").on("change", function() {
+            var value = $(this).val().toLowerCase();
+            $("#myTable td.col5:contains('" + value + "')").parent().show();
+            $("#myTable td.col5:not(:contains('" + value + "'))").parent().hide();
+           
+         });
+        $("#typeSelected").on("change", function() {
+            var value = $(this).val().toLowerCase();
+          
+            $("#myTable td.col4:contains('" + value + "')").parent().show();
+            $("#myTable td.col4:not(:contains('" + value + "'))").parent().hide();
+            
+         });
+       
+    });
+</script>
+@endpush

@@ -80,7 +80,7 @@
                                 
                             @empty
                             <tr>
-                                <td style="text-align: center" colspan="4">لا شـــــــيئ</td>
+                                <td style="text-align: center" colspan="6"><h2>لا شـــــــيئ</h2></td>
                               
                             </tr>
                                 

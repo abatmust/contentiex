@@ -4,8 +4,8 @@
     <div class="container">
         <a class="btn btn-secondary" href="{{route('tribunals.create')}}">إضافة محكمة </a>
         <h2 dir="rtl" class="text-center">لائحة المحاكم</h2>
-
-        <table dir="rtl" class="table">
+        <input dir="rtl" id="myInput" type="text" placeholder="بحث ..." class="float-right form-control my-3" style="width:20%">
+        <table id="myTable" dir="rtl" class="table">
             <thead>
                 <tr>
                     <th style="text-align: center">الرقم</th>
@@ -56,35 +56,40 @@
 <script>
     $(document).ready(function(){
 
-        
-        $('.delete_btn').on('click', function(event){
-            event.preventDefault();
-            swal.fire({
-            title: 'هل أنت متأكد ؟',
-            text: "! لن يكون بإمكانك التراجع ",
-            icon: 'question',
-            iconHtml: '؟',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'نعم',
-            cancelButtonText: 'لا',
-            showCancelButton: true,
-            showCloseButton: true
-      
+$('.delete_btn').on('click', function(event){
+    event.preventDefault();
+    swal.fire({
+    title: 'هل أنت متأكد ؟',
+    text: "! لن يكون بإمكانك التراجع ",
+    icon: 'question',
+    iconHtml: '؟',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'نعم',
+    cancelButtonText: 'لا',
+    showCancelButton: true,
+    showCloseButton: true
 
-            }).then((result) => {
-            if (result.value) {
-            event.target.form.submit();
-                Swal.fire(
-                'حذف !',
-                'تم الحذف.',
-                'success'
-                )
-            }
-            })
-        });
-       
-    });
+
+    }).then((result) => {
+    if (result.value) {
+    event.target.form.submit();
+        Swal.fire(
+        'حذف !',
+        'تم الحذف.',
+        'success'
+        )
+    }
+    })
+});
+$("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+});
+});
+
+});
 </script>
 @endpush
