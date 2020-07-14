@@ -57,7 +57,7 @@
                 @forelse ($dossiers as $dossier)
                 <tr class="rowData">
                     <td scope="row">{{$dossier->ref}}</td>
-                    <td class="text-right" scope="row" style="max-width: 350px">
+                    <td class="text-right" scope="row" style="max-width: 350px; white-space: nowrap">
                         @forelse ($dossier->parties as $partie)
                             {{$partie->pivot->qualite . ':'?? ''}} <b> {{$partie->nomination}}</b><br>
                         @empty
