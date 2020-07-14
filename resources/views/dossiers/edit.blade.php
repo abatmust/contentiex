@@ -35,7 +35,7 @@
                 <div dir="rtl" class="form-group col">
                     <label class="float-right" for="niveau">مرحلة التقاضي</label>
                     <select class="form-control" name="niveau" id="niveau">
-                      <option>إختار ...</option>
+                      <option value="">إختار ...</option>
                       <option {{$monDossier->niveau == 'إبتدائي' ? 'selected': ''}} value="إبتدائي">إبتدائي</option>
                       <option {{$monDossier->niveau == 'إستئناف' ? 'selected': ''}} value="إستئناف">إستئناف</option>
                       <option {{$monDossier->niveau == 'نقض' ? 'selected': ''}} value="نقض">نقض</option>

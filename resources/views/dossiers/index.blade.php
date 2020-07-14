@@ -8,12 +8,21 @@
         <table id="myTable" dir="rtl" class="table">
             <thead>
                 <tr>
-                    <th style="text-align: center">المرجع</th>
-                    <th style="text-align: center; width: 20%">الاطراف</th>
-                    <th style="text-align: center">رائج</th>
-                    <th style="text-align: center"> السنة</th>
-                    <th style="text-align: center"> المحكمة المختصة</th>
-                    <th style="text-align: center">
+                    <th style="text-align: center; vertical-align: top">المرجع</th>
+                    <th style="text-align: center; width: 20%; vertical-align: top">الاطراف</th>
+                    <th style="text-align: center; vertical-align: top">رائج</th>
+                    <th style="text-align: center; vertical-align: top"> السنة
+                        <br>
+                        <select id="anneeSelected" class="form-control my-2 d-print-none" name="niveau" id="niveau">
+                            <option  value=""> ...</option>
+                            @for ($i = 2010; $i < 2021; $i++)
+                                <option>{{ $i }}</option>
+                            @endfor
+                            
+                        </select>
+                    </th>
+                    <th style="text-align: center; vertical-align: top"> المحكمة المختصة</th>
+                    <th style="text-align: center; vertical-align: top">
                          نوع الملف
                          <br>
                          <select id="typeSelected" class="form-control my-2 d-print-none" name="niveau" id="type">
@@ -27,7 +36,7 @@
                              
                          </select>
                     </th>
-                    <th style="text-align: center">
+                    <th style="text-align: center; vertical-align: top">
                         مرحلة التقاضي <br>
                         <select id="niveauSelected" class="form-control my-2 d-print-none" name="niveau" id="niveau">
                             <option  value=""> ...</option>
@@ -37,18 +46,18 @@
                             
                         </select>
                     </th>
-                    <th style="text-align: center">ملف سابق</th>
-                    <th style="text-align: center">ملاحظات</th>
-                    <th style="text-align: center" class="d-print-none">...</th>
-                    <th style="text-align: center" class="d-print-none">...</th>
-                    <th style="text-align: center" class="d-print-none">...</th>
+                    <th style="text-align: center; vertical-align: top">ملف سابق</th>
+                    <th style="text-align: center; vertical-align: top">ملاحظات</th>
+                    <th style="text-align: center; vertical-align: top" class="d-print-none">...</th>
+                    <th style="text-align: center; vertical-align: top" class="d-print-none">...</th>
+                    <th style="text-align: center; vertical-align: top" class="d-print-none">...</th>
                 </tr>
             </thead>
             <tbody>
                 @forelse ($dossiers as $dossier)
                 <tr class="rowData">
                     <td scope="row">{{$dossier->ref}}</td>
-                    <td scope="row" style="width: 20%">
+                    <td class="text-right" scope="row" style="max-width: 350px">
                         @forelse ($dossier->parties as $partie)
                             {{$partie->pivot->qualite . ':'?? ''}} <b> {{$partie->nomination}}</b><br>
                         @empty
@@ -61,12 +70,12 @@
                             <span class='badge badge-warning'>رائج</span>
                         @endif
                     </td>
-                    <td>{{$dossier->annee}}</td>
+                    <td class="col3">{{$dossier->annee}}</td>
                     <td>{{$dossier->tribunal->nomination ?? '---'}}</td>
                     <td class="col4">{{$dossier->type}}</td>
                     <td class="col5">{{$dossier->niveau}}</td>
                     <td> </span>{{$dossier->previous->ref ?? '...'}} /{{$dossier->previous->annee ?? '...'}} / {{$dossier->previous->niveau ?? '...'}}</td>
-                    <td>{{$dossier->observation}}</td>
+                    <td style="max-width: 300px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{$dossier->observation}}</td>
 
                     <td class="d-print-none"><a href="{{route('dossiers.edit', ['dossier' => $dossier->id])}}" class="btn btn-primary">تعديل</a></td>
                     <td class="d-print-none"><a href="{{route('dossiers.show', ['dossier' => $dossier->id])}}" class="btn btn-secondary">تفاصيل</a></td>
@@ -115,6 +124,13 @@
           
             $("#myTable td.col4:contains('" + value + "')").parent().show();
             $("#myTable td.col4:not(:contains('" + value + "'))").parent().hide();
+            
+         });
+        $("#anneeSelected").on("change", function() {
+            var value = $(this).val().toLowerCase();
+          
+            $("#myTable td.col3:contains('" + value + "')").parent().show();
+            $("#myTable td.col3:not(:contains('" + value + "'))").parent().hide();
             
          });
        
