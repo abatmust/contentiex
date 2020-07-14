@@ -64,7 +64,11 @@
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-                                    <a class="dropdown-item" href="{{ route('home') }}">الصفحة الرئيسية</a>
+                                    <a class="dropdown-item text-right" href="{{ route('home') }}">الصفحة الرئيسية</a>
+                                    <a class="dropdown-item text-right" href="{{route('dossiers.index')}}">الملفات</a>
+                                    <a class="dropdown-item text-right" href="{{route('tribunals.index')}}">المحاكم</a>
+                                    <a class="dropdown-item text-right" href="{{route('parties.index')}}">الاطراف</a>
+                                    <a class="dropdown-item text-right" href="{{route('jugements.index')}}">الاحكام</a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf

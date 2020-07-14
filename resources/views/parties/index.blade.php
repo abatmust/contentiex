@@ -18,7 +18,7 @@
             </thead>
             <tbody>
                 @forelse ($parties as $partie)
-                <tr>
+                <tr class="rowData">
                     <td scope="row" style="text-align: center">{{$partie->id}}</td>
                     <td style="text-align: center">{{$partie->nomination}}</td>
                     <td style="text-align: center">
@@ -87,7 +87,7 @@
         });
         $("#myInput").on("keyup", function() {
             var value = $(this).val().toLowerCase();
-            $("#myTable tr").filter(function() {
+            $("#myTable tr.rowData").filter(function() {
             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
         });
   });

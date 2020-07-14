@@ -19,7 +19,7 @@ class CreateDossiersTable extends Migration
             $table->boolean('encours')->default(false);
             $table->enum('niveau',['إبتدائي','إستئناف','نقض'])->nullable();
             $table->string('type')->nullable();
-            $table->enum('annee',['2010','2011','2012','2013','2014','2015','2016','2017','2018','2019','2020'])->nullable();
+            $table->year('annee')->nullable();
             $table->foreignId('tribunal_id')->nullable();
             $table->text('observation')->nullable();
             // $table->foreignId('dossier_id')->nullable();
