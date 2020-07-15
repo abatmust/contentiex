@@ -15,7 +15,9 @@ class DossierController extends Controller
       $this->middleware('auth');
     }
     public function index(){
-        $dossiers = Dossier::all();
+        $dossiers = Dossier::orderBy('annee', 'desc')
+                    ->orderBy('created_at', 'desc')
+                    ->get();
         return view("dossiers.index", ['dossiers' => $dossiers]);
     }
     public function show($id)
