@@ -46,10 +46,15 @@
                     <select class="form-control" name="type" id="type">
                       <option value="">إختار ...</option>
                       <option {{old('type') == 'إداري' ? 'selected' : ''}}>إداري</option>
+                      <option {{old('type') == 'إداري إستعجالي' ? 'selected' : ''}}>إداري إستعجالي</option>
                       <option {{old('type') == 'مدني' ? 'selected' : ''}}>مدني</option>
+                      <option {{old('type') == 'مدني استعجالي' ? 'selected' : ''}}>مدني استعجالي</option>
                       <option {{old('type') == 'تجاري' ? 'selected' : ''}}>تجاري</option>
+                      <option {{old('type') == 'تجاري استعجالي' ? 'selected' : ''}}>تجاري استعجالي</option>
                       <option {{old('type') == 'إجتماعي' ? 'selected' : ''}}>إجتماعي</option>
+                      <option {{old('type') == 'إجتماعي استعجالي' ? 'selected' : ''}}>إجتماعي استعجالي</option>
                       <option {{old('type') == 'جنحي' ? 'selected' : ''}}>جنحي</option>
+                      <option {{old('type') == 'جنحي استعجالي' ? 'selected' : ''}}>جنحي استعجالي</option>
                       <option {{old('type') == 'سرقة المياه' ? 'selected' : ''}}>سرقة المياه</option>
                     </select>
                 </div>
