@@ -37,7 +37,7 @@ class DossierController extends Controller
             'type' => 'nullable|string',
             'annee' => 'nullable|between:2010,2022',
             'tribunal' => 'numeric|nullable',
-            'observation' => 'nullable|text',
+            'observation' => 'nullable',
            
         ]);
         $dossier = new Dossier();
